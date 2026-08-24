@@ -3,7 +3,7 @@ name: Deploy Cosmic Chat to GitHub Pages
 on:
   push:
     branches:
-      - main  # Triggers deployment whenever you push updates to your main branch
+      - main
 
 permissions:
   contents: read
@@ -24,13 +24,10 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
 
-      - name: Setup Web Hosting Environment
-        uses: actions/configure-pages@v4
-
       - name: Upload Static Website Assets
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Deploys files from your root folder directory
+          path: '.'
 
       - name: Publish Live to GitHub Pages Web Network
         id: deployment
