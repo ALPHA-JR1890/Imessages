@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Group Chat Emulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
+    <!-- Free Real-time Web Sync Framework CDN Provider -->
+    <script src="https://ably.com"></script>
+</head>
+<body>
+
+    <!-- Ambient Sync Cosmic Canvas Background Grid -->
+    <canvas id="galaxyCanvas"></canvas>
+
+    <!-- Top Navigation Utility (Pins upload trigger onto top right edge screens) -->
+    <header class="top-nav">
+        <div id="statusMessage" class="status-badge">Default Theme Sync</div>
+        <label for="imageUpload" class="action-btn upload-corner-btn">Choose Global Background</label>
+        <input type="file" id="imageUpload" accept="image/*">
+    </header>
+
+    <!-- Main Centralized Emulator Core Application Shell container -->
+    <main class="app-container">
+        <div class="panel chat-panel">
+            
+            
+            <div id="authPortal" class="chat-auth">
+                <h2>Initialize Chat Node</h2>
+                <p>Enter your profile details to join the live global server connection node.</p>
+                <div class="input-group">
+                    <input type="text" id="userNameInput" placeholder="Your Name (e.g., Bob)" autocomplete="off">
+                    <input type="tel" id="userPhoneInput" placeholder="Your Number (e.g., 555-0123)" autocomplete="off">
+                </div>
+                <button id="joinChatBtn" class="action-btn format-btn">Join Realtime Server</button>
+            </div>
+
+            <!-- Step 2: Active iMessage Style Live Group Room Interface Terminal -->
+            <div id="chatRoom" class="chat-room hidden">
+                <div class="chat-header">
+                    <div class="room-title">🚀 Global System Relay Thread</div>
+                    <div class="room-status">Connected as <span id="activeUserName">Guest</span></div>
+                </div>
+                
+                <!-- Chat Feed Scroll Area -->
+                <div id="chatMessageFeed" class="chat-feed">
+                    <div class="system-msg">System Connection Established. Changing the theme button in the top-right updates the screen for everyone here.</div>
+                </div>
+
+                <!-- Input Tray footer Form elements -->
+                <div class="chat-footer">
+                    <input type="text" id="chatMessageInput" placeholder="iMessage..." autocomplete="off">
+                    <button id="sendTransmissionBtn" class="send-btn">➔</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Core Script Asset execution chains -->
+    <script src="script.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
