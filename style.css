@@ -1,15 +1,10 @@
-* {
-    box-sizing: border-box;
-}
-
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #020205;
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: var(--canvas-base-bg);
 }
 
 #galaxyCanvas {
@@ -36,14 +31,14 @@ body, html {
 }
 
 .status-badge {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
     letter-spacing: 0.5px;
 }
 
@@ -51,51 +46,29 @@ input[type="file"] {
     display: none;
 }
 
-.action-btn {
-    background: linear-gradient(135deg, var(--theme-primary, #3b82f6), var(--theme-secondary, #ff7bf2));
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-    transition: transform 0.2s, filter 0.2s;
-    text-align: center;
-}
-
-.action-btn:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.1);
-}
-
 .upload-corner-btn {
     padding: 10px 20px;
+    font-size: 0.85rem;
 }
 
 .format-btn {
     display: block;
     width: 100%;
-    padding: 12px 20px;
-    margin-top: 10px;
+    padding: 14px 20px;
+    margin-top: 15px;
+    font-size: 0.95rem;
 }
 
 .app-container {
     position: relative;
     z-index: 10;
     width: 95%;
-    max-width: 800px;
-    height: 75vh;
+    max-width: 680px; /* Refined tighter sizing layout bounds dimensions profile */
+    height: 80vh;
     margin: 12vh auto 5vh auto;
 }
 
 .panel {
-    background: rgba(10, 10, 20, 0.45);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
 }
