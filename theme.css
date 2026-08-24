@@ -1,49 +1,41 @@
-/* ==========================================================================
-   SYSTEM THEME BRIDGE & UNIVERSAL CUSTOM PROPERTY VARIABLES
-   ========================================================================== */
-
 :root {
-    /* Base Color Tokens (Overwritten dynamically by image uploader) */
-    --theme-primary: 0, 122, 255;      /* #007aff (iOS Blue) */
-    --theme-secondary: 255, 45, 85;    /* #ff2d55 (iOS Pink) */
-    
-    /* Animation Easing Functions */
+    --theme-primary: 0, 122, 255; /* Blue iMessage bubble */
+    --theme-secondary: 255, 45, 85; 
     --fluid-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --liquid-speed: 0.4s;
 }
 
-/* ==========================================================================
-   DEFAULT: LIGHT MODE SPECIFICATIONS
-   ========================================================================== */
+/* Light Mode System Match */
 @media (prefers-color-scheme: light) {
     :root {
         --canvas-base-bg: #f2f2f7;
-        --glass-surface-bg: rgba(255, 255, 255, 0.35);
-        --glass-surface-border: rgba(255, 255, 255, 0.45);
-        --glass-inner-shimmer: rgba(255, 255, 255, 0.6);
-        --liquid-shadow: rgba(31, 38, 135, 0.08);
+        --glass-surface-bg: rgba(255, 255, 255, 0.45);
+        --glass-surface-border: rgba(255, 255, 255, 0.5);
         --text-primary: #000000;
         --text-secondary: rgba(0, 0, 0, 0.5);
         --imessage-incoming: rgba(0, 0, 0, 0.06);
         --imessage-incoming-text: #000000;
-        --panel-blur-strength: 20px;
     }
 }
 
-/* ==========================================================================
-   AUTOMATIC OVERRIDE: DARK MODE SPECIFICATIONS
-   ========================================================================== */
+/* Dark Mode System Match */
 @media (prefers-color-scheme: dark) {
     :root {
         --canvas-base-bg: #05050a;
-        --glass-surface-bg: rgba(10, 10, 22, 0.4);
-        --glass-surface-border: rgba(255, 255, 255, 0.07);
-        --glass-inner-shimmer: rgba(255, 255, 255, 0.12);
-        --liquid-shadow: rgba(0, 0, 0, 0.55);
+        --glass-surface-bg: rgba(10, 10, 22, 0.45);
+        --glass-surface-border: rgba(255, 255, 255, 0.08);
         --text-primary: #ffffff;
         --text-secondary: rgba(255, 255, 255, 0.45);
         --imessage-incoming: #262629;
         --imessage-incoming-text: #ffffff;
-        --panel-blur-strength: 30px;
     }
+}
+
+/* Glass panel construction styling */
+.glass-panel {
+    background: var(--glass-surface-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-surface-border);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
