@@ -46,9 +46,26 @@ input[type="file"] {
     display: none;
 }
 
+.action-btn {
+    background: linear-gradient(135deg, rgb(var(--theme-primary)), rgb(var(--theme-secondary)));
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(var(--theme-primary), 0.2);
+    transition: transform 0.2s, filter 0.2s;
+    text-align: center;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+
 .upload-corner-btn {
     padding: 10px 20px;
-    font-size: 0.85rem;
 }
 
 .format-btn {
@@ -63,8 +80,8 @@ input[type="file"] {
     position: relative;
     z-index: 10;
     width: 95%;
-    max-width: 680px; /* Refined tighter sizing layout bounds dimensions profile */
-    height: 80vh;
+    max-width: 650px;
+    height: 75vh;
     margin: 12vh auto 5vh auto;
 }
 
