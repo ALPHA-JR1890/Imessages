@@ -3,62 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Group Chat Emulator</title>
+    <title>Cosmic Dynamic Room Hub Emulator</title>
+    <!-- Core Cascading Stylesheet File Arrays -->
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="liquid-glass.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chat.css">
-    <!-- Free Real-time Web Sync Framework CDN Provider -->
+    <!-- Free Realtime Web Sync CDN Pipeline Provider -->
     <script src="https://ably.com"></script>
 </head>
 <body>
 
-    <!-- Ambient Sync Cosmic Canvas Background Grid -->
+    <!-- Ambient Cosmic Particle Canvas Background Layer -->
     <canvas id="galaxyCanvas"></canvas>
 
-    <!-- Top Navigation Utility (Pins upload trigger onto top right edge screens) -->
+    <!-- Header bar containing theme uploader and status badge -->
     <header class="top-nav">
-        <div id="statusMessage" class="status-badge">Default Theme Sync</div>
-        <label for="imageUpload" class="action-btn upload-corner-btn">Choose Global Background</label>
+        <div id="statusMessage" class="status-badge">Theme Synchronized</div>
+        <label for="imageUpload" class="liquid-btn upload-corner-btn">Choose Global Background</label>
         <input type="file" id="imageUpload" accept="image/*">
     </header>
 
-    <!-- Main Centralized Emulator Core Application Shell container -->
+    <!-- Main Container Area -->
     <main class="app-container">
-        <div class="panel chat-panel">
+        <div class="panel chat-panel liquid-glass-panel">
             
             
             <div id="authPortal" class="chat-auth">
-                <h2>Initialize Chat Node</h2>
-                <p>Enter your profile details to join the live global server connection node.</p>
+                <h2>Initialize Profile Node</h2>
+                <p class="themed-p">Please input profile credentials to connect to the decentralized cloud system network relays.</p>
                 <div class="input-group">
-                    <input type="text" id="userNameInput" placeholder="Your Name (e.g., Bob)" autocomplete="off">
-                    <input type="tel" id="userPhoneInput" placeholder="Your Number (e.g., 555-0123)" autocomplete="off">
+                    <input type="text" id="userNameInput" class="liquid-input" placeholder="Your Name (e.g., Bob)" autocomplete="off">
+                    <input type="tel" id="userPhoneInput" class="liquid-input" placeholder="Your Number (e.g., 555-0123)" autocomplete="off">
                 </div>
-                <button id="joinChatBtn" class="action-btn format-btn">Join Realtime Server</button>
+                <button id="joinChatBtn" class="liquid-btn format-btn">Join Realtime Server</button>
             </div>
 
-            <!-- Step 2: Active iMessage Style Live Group Room Interface Terminal -->
+            <!-- Step 2: Main iMessage Styled Room Window Component Terminal -->
             <div id="chatRoom" class="chat-room hidden">
                 <div class="chat-header">
-                    <div class="room-title">🚀 Global System Relay Thread</div>
-                    <div class="room-status">Connected as <span id="activeUserName">Guest</span></div>
+                    <!-- Left Hand Corner Context Status indicator elements -->
+                    <div class="header-left">
+                        <div class="room-title" id="roomTitleDisplay">💬 Room: Default</div>
+                        <div class="room-status">Profile Node: <span id="activeUserName">Guest</span></div>
+                    </div>
+                    <!-- iOS Inspired Top Right Action Shortcut Trigger Button -->
+                    <button id="newRoomRouteBtn" class="new-chat-action-btn" title="Create or Join a Room with Code">📝</button>
                 </div>
                 
-                <!-- Chat Feed Scroll Area -->
+                <!-- Main Chat Feed Window Shell -->
                 <div id="chatMessageFeed" class="chat-feed">
-                    <div class="system-msg">System Connection Established. Changing the theme button in the top-right updates the screen for everyone here.</div>
+                    <div class="system-msg">Connected to Global Routing Node. Use the 📝 button in the header corner to jump channels or create customized groups using entry codes.</div>
                 </div>
 
-                <!-- Input Tray footer Form elements -->
+                <!-- Input Footer Element Form Bar -->
                 <div class="chat-footer">
-                    <input type="text" id="chatMessageInput" placeholder="iMessage..." autocomplete="off">
-                    <button id="sendTransmissionBtn" class="send-btn">➔</button>
+                    <input type="text" id="chatMessageInput" class="liquid-input" placeholder="iMessage..." autocomplete="off">
+                    <button id="sendTransmissionBtn" class="send-btn liquid-btn">➔</button>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- Core Script Asset execution chains -->
+    <!-- Client Executable Application Program Scripts Pipeline Core links -->
     <script src="script.js"></script>
     <script src="chat.js"></script>
 </body>
