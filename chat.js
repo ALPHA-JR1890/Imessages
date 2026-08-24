@@ -13,7 +13,7 @@ let currentUser = { name: "", clientId: "" };
 let realtimeChannel = null;
 
 // Free Sandbox Dev API Key string connection token
-const FREE_DEMO_KEY = "xVw9_A.9A1b2c:3d4e5f6g7h8i9j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y";
+const FREE_DEMO_KEY = "kKYmjQ.Sz-JLA:e5Y_xtxDOD6npPTFAnWa4CbD2O315FEtZrPzgeS-Nyc";
 
 function attemptJoinChat() {
     const name = userNameInput.value.trim();
