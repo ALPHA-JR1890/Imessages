@@ -2,99 +2,58 @@ const authPortal = document.getElementById('authPortal');
 const chatRoom = document.getElementById('chatRoom');
 const joinChatBtn = document.getElementById('joinChatBtn');
 const userNameInput = document.getElementById('userNameInput');
-const userPhoneInput = document.getElementById('userPhoneInput');
 const activeUserName = document.getElementById('activeUserName');
 const chatMessageFeed = document.getElementById('chatMessageFeed');
 const chatMessageInput = document.getElementById('chatMessageInput');
 const sendTransmissionBtn = document.getElementById('sendTransmissionBtn');
 const imageUpload = document.getElementById('imageUpload');
 const statusMessage = document.getElementById('statusMessage');
-const newRoomRouteBtn = document.getElementById('newRoomRouteBtn');
-const roomTitleDisplay = document.getElementById('roomTitleDisplay');
 
-let currentUser = { name: "", phone: "", clientId: "" };
-let realtimeClient = null;
+let currentUser = { name: "", clientId: "" };
 let realtimeChannel = null;
-let currentActiveRoomCode = "default"; // Default start channel namespace tracker
 
+// Free Sandbox Dev API Key string connection token
 const FREE_DEMO_KEY = "xVw9_A.9A1b2c:3d4e5f6g7h8i9j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y";
 
 function attemptJoinChat() {
     const name = userNameInput.value.trim();
-    const phone = userPhoneInput.value.trim();
 
-    if (!name || !phone) {
-        alert("Please provide credential values to cross-check structural security nodes.");
+    if (!name) {
+        alert("Please enter your name to log in.");
         return;
     }
 
     currentUser.name = name;
-    currentUser.phone = phone;
     currentUser.clientId = "user_" + Math.random().toString(36).substr(2, 9);
 
-    // Bootstrap global real-time service system engine link
+    initializeFreeRealtimeNetwork();
+}
+
+function initializeFreeRealtimeNetwork() {
     try {
-        realtimeClient = new Ably.Realtime({ key: FREE_DEMO_KEY, clientId: currentUser.clientId });
-        connectToGroupChannelRoom(currentActiveRoomCode);
+        const ably = new Ably.Realtime({ key: FREE_DEMO_KEY, clientId: currentUser.clientId });
+        realtimeChannel = ably.channels.get('single-global-cosmic-chat');
+
+        // Listen for new chat text messages
+        realtimeChannel.subscribe('message', (packet) => {
+            const isSelf = packet.clientId === currentUser.clientId;
+            renderMessage(packet.data.senderName, packet.data.textMessage, isSelf);
+        });
+
+        // Listen for cloud background adjustments triggered by others
+        realtimeChannel.subscribe('global_theme_update', (packet) => {
+            if (packet.clientId !== currentUser.clientId) {
+                applyParsedThemeUpdate(packet.data.pColor, packet.data.sColor);
+                statusMessage.textContent = `Theme updated by ${packet.data.byUser}`;
+            }
+        });
+
         activateChatInterface();
     } catch (err) {
-        console.error("Framework Error binding web connection endpoints.", err);
+        // Fallback interface entry if user runs offline
         activateChatInterface();
     }
 }
-
-/**
- * Disconnects old channel handles and safely opens new chat targets using input codes.
- */
-function connectToGroupChannelRoom(targetRoomCode) {
-    // 1. Detach stream loops from old room channels if active
-    if (realtimeChannel) {
-        realtimeChannel.unsubscribe();
-        realtimeChannel.detach();
-    }
-
-    // Normalizing incoming string targets to ensure consistency
-    currentActiveRoomCode = targetRoomCode.trim().toLowerCase() || "default";
-    
-    // 2. Map structural subscription to the new stream code space
-    realtimeChannel = realtimeClient.channels.get(`room_${currentActiveRoomCode}`);
-    roomTitleDisplay.textContent = `💬 Room: ${currentActiveRoomCode.toUpperCase()}`;
-
-    // 3. Listen for text messages inside this room
-    realtimeChannel.subscribe('message', (packet) => {
-        const isSelf = packet.clientId === currentUser.clientId;
-        renderMessage(packet.data.senderName, packet.data.textMessage, isSelf);
-    });
-
-    // 4. Listen for background updates inside this room
-    realtimeChannel.subscribe('global_theme_update', (packet) => {
-        if (packet.clientId !== currentUser.clientId) {
-            applyParsedThemeUpdate(packet.data.pColor, packet.data.sColor);
-            statusMessage.textContent = `Theme updated by ${packet.data.byUser}`;
-        }
-    });
-
-    // Output system logs alerting connection confirmation changes
-    const systemNotice = document.createElement('div');
-    systemNotice.classList.add('system-msg');
-    systemNotice.textContent = `Switched into active thread channel room [${currentActiveRoomCode.toUpperCase()}]. Messages sent here stay private to this code space.`;
-    chatMessageFeed.appendChild(systemNotice);
-    chatMessageFeed.scrollTop = chatMessageFeed.scrollHeight;
-}
-
-/**
- * Displays dialogue prompts to routing requests
- */
-newRoomRouteBtn.addEventListener('click', () => {
-    const inputCode = prompt("Enter a Chat Room Code:\n(If the code doesn't exist, a new private room will be initialized instantly!)", currentActiveRoomCode);
-    if (inputCode !== null) {
-        if (!inputCode.trim()) {
-            alert("Invalid target channel selection space requested.");
-            return;
-        }
-        connectToGroupChannelRoom(inputCode);
-    }
-});
 
 function activateChatInterface() {
     activeUserName.textContent = currentUser.name;
@@ -125,13 +84,15 @@ function renderMessage(sender, text, isSelf = false) {
 
 function sendTransmission() {
     const text = chatMessageInput.value.trim();
-    if (!text || !realtimeChannel) return;
+    if (!text) return;
 
-    realtimeChannel.publish('message', { senderName: currentUser.name, textMessage: text });
+    if (realtimeChannel) {
+        realtimeChannel.publish('message', { senderName: currentUser.name, textMessage: text });
+    }
     chatMessageInput.value = "";
 }
 
-// Convert uploaded images to color presets
+// Convert uploaded images to background colors
 imageUpload.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -151,7 +112,7 @@ imageUpload.addEventListener('change', (event) => {
             const secondaryRGB = { r: pix[4], g: pix[5], b: pix[6] };
 
             applyParsedThemeUpdate(primaryRGB, secondaryRGB);
-            statusMessage.textContent = "Global Theme Shared!";
+            statusMessage.textContent = "Theme Shared!";
 
             if (realtimeChannel) {
                 realtimeChannel.publish('global_theme_update', {
